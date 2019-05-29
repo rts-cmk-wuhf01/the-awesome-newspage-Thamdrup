@@ -12,4 +12,12 @@ module.exports = (app) => {
       res.render('contact');
    });
 
+   app.get('/single-post', (req, res, next) => {
+      res.render('single-post');
+   });
+
+   app.get('/about', (req, res, next) => {
+      res.render('about');
+   });
+
 };
