@@ -19,5 +19,4 @@ module.exports = (app) => {
    app.get('/about', (req, res, next) => {
       res.render('about');
    });
-
 };
