@@ -8,4 +8,8 @@ module.exports = (app) => {
       res.render('categories-post');
    });
 
+   app.get('/contact', (req, res, next) => {
+      res.render('contact');
+   });
+
 };

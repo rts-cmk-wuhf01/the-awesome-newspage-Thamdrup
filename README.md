@@ -1,3 +1,4 @@
+Rasmus Thamdrup
 # The Awesome Newspage
 
 ## Installation
