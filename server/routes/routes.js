@@ -14,9 +14,9 @@ module.exports = (app) => {
       ]
 
       res.render('home',{
-         "latestProducts": products
-      });
-      
+         "latestProducts": products,
+         'dateTest':"2019-04-11"
+      })
    });
 
    app.get('/categories-post', (req, res, next) => {
@@ -34,4 +34,15 @@ module.exports = (app) => {
    app.get('/about', (req, res, next) => {
       res.render('about');
    });
+
+
+
+   app.get('/', (req, res, next) => {
+      let now = new Date('2019-01-14 07:00:14');
+      console.log(app.locals.dateAndTime.format(now, 'h:mm A | MMMM DD'));
+      res.render('');
+   });
+
+
+
 };

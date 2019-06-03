@@ -29,12 +29,15 @@
             <p><%= product.price %> kr.</p>
         </div>
     <% }) %>
+    
 
 
-
-    <% let now = new Date('2019-04-14 10:25:44'); %>
     <div class="date_tester">
-        <p><%= dateAndTime.format(now, 'h:mm A | MMMM DD') %></p>
+        <h1>
+        <% let now = new Date(dateTest); %>
+        <% let formattedDate = dateAndTime.format(now, 'D. M'); %>
+        <p><%= formattedDate %></p>
+    </h1>
     </div>
 
 
