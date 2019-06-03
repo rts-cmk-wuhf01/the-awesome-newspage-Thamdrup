@@ -22,6 +22,15 @@
         <%- include('partials/header.ejs') %>
     </header>
     <!-- ##### Header Area End ##### -->
+    
+        <% latestProducts.forEach(product =>{%>
+            <div class="product">
+                <h2><%= product.name %></h2>
+                <p><%= product.price %> kr.</p>
+            </div>
+            <% }) %>
+    
+
 
     <!-- ##### Hero Area Start ##### -->
     <div class="hero-area">

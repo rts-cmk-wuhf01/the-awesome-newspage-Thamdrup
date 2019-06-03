@@ -1,7 +1,22 @@
 module.exports = (app) => {
 
    app.get('/', (req, res, next) => {
-      res.render('home');
+
+      let products = [
+         {
+            "name": "Product1",
+            "price": "100"
+         },
+         {
+            "name": "Product2",
+            "price": "200"
+         }
+      ]
+
+      res.render('home',{
+         "latestProducts": products
+      });
+      
    });
 
    app.get('/categories-post', (req, res, next) => {
