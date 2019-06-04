@@ -12,9 +12,48 @@ module.exports = (app) => {
             "price": "200"
          }
       ]
+      let popularStories =[
+         {
+            "img":"img/bg-img/12.jpg",
+            "category":"Finance",
+            "title":"Dolor sit amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales placer. Sed varius leo ac...",
+            "imgLike":"img/core-img/like.png",
+            "likes":"-999",
+            "imgComments":"img/core-img/chat.png",
+            "comments":"13"
+         },
+         {
+            "img":"img/bg-img/13.jpg",
+            "category":"Finance",
+            "title":"Dolor sit amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales placer. Sed varius leo ac...",
+            "imgLike":"img/core-img/like.png",
+            "likes":"1",
+            "imgComments":"img/core-img/chat.png",
+            "comments":"999"
+         },
+         {
+            "img":"img/bg-img/14.jpg",
+            "category":"Finance",
+            "title":"Dolor sit amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales placer. Sed varius leo ac...",
+            "imgLike":"img/core-img/like.png",
+            "likes":"-524",
+            "imgComments":"img/core-img/chat.png",
+            "comments":"153"
+         },
+         {
+            "img":"img/bg-img/15.jpg",
+            "category":"Finance",
+            "title":"Dolor sit amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales placer. Sed varius leo ac...",
+            "imgLike":"img/core-img/like.png",
+            "likes":"-161",
+            "imgComments":"img/core-img/chat.png",
+            "comments":"20"
+         },
+      ]
 
       res.render('home',{
          "latestProducts": products,
+         "popularStories": popularStories,
          'dateTest':"2019-10-21 18:34",
          'dateTest2':"2019-9-15 09:57"
       })
