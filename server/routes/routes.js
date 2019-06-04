@@ -50,10 +50,25 @@ module.exports = (app) => {
             "comments":"20"
          },
       ]
+      let videos = [
+         {
+            "imgVideo":"img/bg-img/video1.jpg",
+            "linkVideo":"https://www.youtube.com/watch?v=5BQr-j3BBzU"
+         },
+         {
+            "imgVideo":"img/bg-img/video2.jpg",
+            "linkVideo":"https://www.youtube.com/watch?v=5BQr-j3BBzU"
+         },
+         {
+            "imgVideo":"img/bg-img/video3.jpg",
+            "linkVideo":"https://www.youtube.com/watch?v=5BQr-j3BBzU"
+         },
+      ]
 
       res.render('home',{
          "latestProducts": products,
          "popularStories": popularStories,
+         "videos": videos,
          'dateTest':"2019-10-21 18:34",
          'dateTest2':"2019-9-15 09:57"
       })
