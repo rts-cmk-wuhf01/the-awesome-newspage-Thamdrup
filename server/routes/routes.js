@@ -1,24 +1,37 @@
+const mysql = require('../config/mysql');
 module.exports = (app) => {
+
+   app.get('/database', async (req, res, next) => {
+let db = await mysql.connect();
+let [products] = await db.execute('SELECT * FROM products');
+db.end();
+
+// res.send(products);
+
+res.render('products',{
+   'products' : products
+})
+   })
 
    app.get('/', (req, res, next) => {
 
-      let products = [
-         {
-            "name": "Product1",
-            "price": "100"
-         },
-         {
-            "name": "Product2",
-            "price": "200"
-         }
-      ]
+      // let products = [
+      //    {
+      //       "name": "Product1",
+      //       "price": "100"
+      //    },
+      //    {
+      //       "name": "Product2",
+      //       "price": "200"
+      //    }
+      // ]
       let popularStories =[
          {
             "img":"img/bg-img/12.jpg",
             "category":"Finance",
             "title":"Dolor sit amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales placer. Sed varius leo ac...",
             "imgLike":"img/core-img/like.png",
-            "likes":"-999",
+            "likes":"999",
             "imgComments":"img/core-img/chat.png",
             "comments":"13"
          },
@@ -36,7 +49,7 @@ module.exports = (app) => {
             "category":"Finance",
             "title":"Dolor sit amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales placer. Sed varius leo ac...",
             "imgLike":"img/core-img/like.png",
-            "likes":"-524",
+            "likes":"524",
             "imgComments":"img/core-img/chat.png",
             "comments":"153"
          },
@@ -66,7 +79,7 @@ module.exports = (app) => {
       ]
 
       res.render('home',{
-         "latestProducts": products,
+         // "latestProducts": products,
          "popularStories": popularStories,
          "videos": videos,
          'dateTest':"2019-10-21 18:34",
