@@ -4,51 +4,13 @@ module.exports = (app) => {
 
 
    app.get('/', async (req, res, next) => {
-      
 
       let db = await mysql.connect();
       let [categories] = await db.execute('SELECT * FROM categories');
-      let [popularStories] = await db.execute ('SELECT * FROM `articles` INNER JOIN categories ON category_id = fk_category_id ORDER BY `articles`.`article_likes`  DESC')
+      let [popularStories] = await db.execute ('SELECT * FROM `articles` INNER JOIN categories ON category_id = fk_category_id ORDER BY `articles`.`article_likes`  DESC');
+      let [popularStoriesInfo] = await db.execute ('SELECT * FROM `articles` INNER JOIN categories ON category_id = fk_category_id ORDER BY `articles`.`article_likes`  DESC LIMIT 4');
       db.end();
 
-      // let popularStories =[
-      //    {
-      //       "img":"/img/bg-img/12.jpg",
-      //       "category":"Finance",
-      //       "title":"Dolor sit amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales placer. Sed varius leo ac...",
-      //       "imgLike":"/img/core-img/like.png",
-      //       "likes":"999",
-      //       "imgComments":"/img/core-img/chat.png",
-      //       "comments":"13"
-      //    },
-      //    {
-      //       "img":"/img/bg-img/13.jpg",
-      //       "category":"Finance",
-      //       "title":"Dolor sit amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales placer. Sed varius leo ac...",
-      //       "imgLike":"/img/core-img/like.png",
-      //       "likes":"1",
-      //       "imgComments":"/img/core-img/chat.png",
-      //       "comments":"999"
-      //    },
-      //    {
-      //       "img":"/img/bg-img/14.jpg",
-      //       "category":"Finance",
-      //       "title":"Dolor sit amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales placer. Sed varius leo ac...",
-      //       "imgLike":"/img/core-img/like.png",
-      //       "likes":"524",
-      //       "imgComments":"/img/core-img/chat.png",
-      //       "comments":"153"
-      //    },
-      //    {
-      //       "img":"/img/bg-img/15.jpg",
-      //       "category":"Finance",
-      //       "title":"Dolor sit amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales placer. Sed varius leo ac...",
-      //       "imgLike":"/img/core-img/like.png",
-      //       "likes":"-161",
-      //       "imgComments":"/img/core-img/chat.png",
-      //       "comments":"20"
-      //    },
-      // ]
       let videos = [
          {
             "imgVideo":"/img/bg-img/video1.jpg",
@@ -67,13 +29,14 @@ module.exports = (app) => {
       res.render('home',{
          "categories": categories,
          "popularStories": popularStories,
+         "popularStoriesInfo": popularStoriesInfo,
          "videos": videos,
          'dateTest':"2019-10-21 18:34",
          'dateTest2':"2019-9-15 09:57"
       })
    });
 
-   
+
    
    app.get('/categories-post', async (req, res, next) => {
       let db = await mysql.connect();

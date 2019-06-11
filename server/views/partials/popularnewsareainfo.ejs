@@ -6,44 +6,17 @@
 	<h3>4 Most Popular News</h3>
 
 	<!-- Single Popular Blog -->
-	<div class="single-popular-post">
-		<a href="#">
-			<h6><span>1.</span> Amet, consectetur adipiscing elit. Nam eu metus sit amet odio
-				sodales.</h6>
-		</a>
-		<% let now = new Date(dateTest); %>
-        <% let formattedDate = dateAndTime.format(now,'h:mm A D. MMMM'); %>
-		<p><%= formattedDate %></p>
-	</div>
-
-	<!-- Single Popular Blog -->
-	<div class="single-popular-post">
-		<a href="#">
-			<h6><span>2.</span> Consectetur adipiscing elit. Nam eu metus sit amet odio sodales
-				placer.</h6>
-		</a>
-		<% let past = new Date(dateTest2); %>
-		<% let formattedDate2 = dateAndTime.format(past,'h:mm A MMMM D'); %>
-		<p class="post-date"><%= formattedDate2 %></p>
-	</div>
-
-	<!-- Single Popular Blog -->
-	<div class="single-popular-post">
-		<a href="#">
-			<h6><span>3.</span> Adipiscing elit. Nam eu metus sit amet odio sodales placer. Sed
-				varius leo.</h6>
-		</a>
-		<p class="post-date"><%= formattedDate %></p>
-	</div>
-
-	<!-- Single Popular Blog -->
-	<div class="single-popular-post">
-		<a href="#">
-			<h6><span>4.</span> Eu metus sit amet odio sodales placer. Sed varius leo ac...</h6>
-		</a>
-		<p class="post-date"><%= formattedDate2 %></p>
-	</div>
-</div>
+	<% popularStoriesInfo.forEach((popularStoryInfo, index) => { %>
+		<!-- Single Popular Blog -->
+			<div class="single-popular-post">
+				<a href="#">
+					<h6><span><%= index+1 %></span><%= popularStoryInfo.article_title %></h6>
+				</a>
+				<% let now = new Date(popularStoryInfo.article_postdate); %>
+				<% let formattedDate = dateAndTime.format(now,'h:mm A D. MMMM'); %>
+				<p class="post-date"><%= formattedDate %></p>
+			</div>
+		<% }) %> 
 
 <!-- Newsletter Widget -->
 <div class="newsletter-widget">
