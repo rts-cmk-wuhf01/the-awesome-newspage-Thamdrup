@@ -13,7 +13,7 @@
     <%- include('partials/favicon.ejs') %>
 
     <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <%- include('partials/style.ejs') %>
 </head>
 
 <body>
@@ -62,7 +62,7 @@
         
     </div>
     <!-- ##### Editorial Post Area End ##### -->
-
+    <%- include('partials/editorspickpostareacontainer.ejs') %>
     <!-- ##### Footer Add Area Start ##### -->
     <div class="footer-add-area">
         <%- include('partials/footeraddarea.ejs') %>
@@ -77,15 +77,6 @@
     <!-- ##### Footer Area Start ##### -->
 
     <!-- ##### All Javascript Files ##### -->
-    <!-- jQuery-2.2.4 js -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="js/bootstrap/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
-    <script src="js/plugins/plugins.js"></script>
-    <!-- Active js -->
-    <script src="js/active.js"></script>
+    <%- include('partials/scripts.ejs') %>
 </body>
 </html>

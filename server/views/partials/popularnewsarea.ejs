@@ -7,17 +7,17 @@
 	<div class="col-12 col-md-6">
 		<div class="single-blog-post style-3">
 			<div class="post-thumb">
-				<a href="#"><img src="<%= popularStory.img%>" alt=""></a>
+				<a href="#"><img src="/img/bg-img/<%= popularStory.article_image%>" alt=""></a>
 			</div>
 			<div class="post-data">
-				<a href="#" class="post-catagory"><%= popularStory.category %></a>
+				<a href="#" class="post-catagory"><%= popularStory.category_title %></a>
 				<a href="#" class="post-title">
-					<h6><%= popularStory.title %></h6>
+					<h6><%= popularStory.article_title %></h6>
 				</a>
 				<div class="post-meta d-flex align-items-center">
-					<a href="#" class="post-like"><img src="<%= popularStory.imgLike%>" alt="">
-						<span><%= popularStory.likes %></span></a>
-					<a href="#" class="post-comment"><img src="<%= popularStory.imgComments%>" alt="">
+					<a href="#" class="post-like"><img src="/img/core-img/like.png" alt="">
+						<span><%= popularStory.article_likes %></span></a>
+					<a href="#" class="post-comment"><img src="/img/core-img/chat.png" alt="">
 						<span><%= popularStory.comments %></span></a>
 				</div>
 			</div>
