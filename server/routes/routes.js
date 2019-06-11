@@ -1,30 +1,14 @@
 const mysql = require('../config/mysql');
 module.exports = (app) => {
 
-   app.get('/database', async (req, res, next) => {
-let db = await mysql.connect();
-let [products] = await db.execute('SELECT * FROM products');
-db.end();
 
-// res.send(products);
 
-res.render('products',{
-   'products' : products
-})
-   })
+   app.get('/', async (req, res, next) => {
 
-   app.get('/', (req, res, next) => {
+      let db = await mysql.connect();
+      let [categoryTitle] = await db.execute('SELECT * FROM categories');
+      db.end();
 
-      // let products = [
-      //    {
-      //       "name": "Product1",
-      //       "price": "100"
-      //    },
-      //    {
-      //       "name": "Product2",
-      //       "price": "200"
-      //    }
-      // ]
       let popularStories =[
          {
             "img":"img/bg-img/12.jpg",
@@ -79,7 +63,6 @@ res.render('products',{
       ]
 
       res.render('home',{
-         // "latestProducts": products,
          "popularStories": popularStories,
          "videos": videos,
          'dateTest':"2019-10-21 18:34",
@@ -87,6 +70,12 @@ res.render('products',{
       })
    });
 
+   app.get('/categories-post/:category_id', async (req, res, next) => {
+      res.send(req.params.category_id); // for demonstrationens skyld! 
+   
+      // her kan alle kategoriens artikler hentes osv...
+   });
+   
    app.get('/categories-post', (req, res, next) => {
       res.render('categories-post',{
          'dateTest':"2019-07-16 14:19",
@@ -94,6 +83,7 @@ res.render('products',{
          'dateTest3':"2019-01-01 11:11",
       });
    });
+
 
    app.get('/contact', (req, res, next) => {
       res.render('contact');

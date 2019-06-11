@@ -143,14 +143,19 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li><a href="#">Politics</a></li>
-                                    <li><a href="#">Breaking News</a></li>
-                                    <li><a href="#">Business</a></li>
-                                    <li><a href="#">Technology</a></li>
-                                    <li><a href="#">Health</a></li>
-                                    <li><a href="#">Travel</a></li>
-                                    <li><a href="#">Sports</a></li>
-                                    <li><a href="contact">Contact</a></li>
+                                    <% if(typeof categories != 'undefined'){ %>
+                                        <% categories.forEach(category =>{ %>
+                                            <li><a href="/category/<%=category.category_id %>"><%=category.category_title %></a></li>
+                                        <% }); %>
+                                    <% } %>
+                                    <!-- <li><a href="#">Polooocs</a></li>
+                                    <li><a href="#">Breooong News</a></li>
+                                    <li><a href="#">Busoooss</a></li>
+                                    <li><a href="#">Tecooology</a></li>
+                                    <li><a href="#">Heaooo</a></li>
+                                    <li><a href="#">Toooel</a></li>
+                                    <li><a href="#">Sooots</a></li>
+                                    <li><a href="contact">Cooooct</a></li> -->
                                 </ul>
                             </div>
                             <!-- Nav End -->
