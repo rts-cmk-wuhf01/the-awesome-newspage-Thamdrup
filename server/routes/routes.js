@@ -7,9 +7,11 @@ module.exports = (app) => {
 
       let db = await mysql.connect();
       let [categories] = await db.execute('SELECT * FROM categories');
-      let [popularStories] = await db.execute ('SELECT * FROM `articles` INNER JOIN categories ON category_id = fk_category_id ORDER BY `articles`.`article_likes`  DESC');
+      let [popularStories] = await db.execute ('SELECT * FROM `articles` INNER JOIN categories ON category_id = fk_category_id ORDER BY `articles`.`article_likes`  DESC LIMIT 4');
       let [popularStoriesInfo] = await db.execute ('SELECT * FROM `articles` INNER JOIN categories ON category_id = fk_category_id ORDER BY `articles`.`article_likes`  DESC LIMIT 4');
+      let [editorsPickPostAreas] = await db.execute ('SELECT * FROM `articles` ORDER BY `article_postdate` DESC LIMIT 6')
       db.end();
+
 
       let videos = [
          {
@@ -30,6 +32,7 @@ module.exports = (app) => {
          "categories": categories,
          "popularStories": popularStories,
          "popularStoriesInfo": popularStoriesInfo,
+         "editorsPickPostAreas": editorsPickPostAreas,
          "videos": videos,
          'dateTest':"2019-10-21 18:34",
          'dateTest2':"2019-9-15 09:57"
@@ -53,7 +56,7 @@ module.exports = (app) => {
    app.get('/categories-post/:category_id', async (req, res, next) => {
       let db = await mysql.connect();
       let [categories] = await db.execute('SELECT * FROM categories');
-      let [articles] = await db.execute('SELECT * FROM articles WHERE fk_category_id = ?', [req.params.category_id]);
+      let [articles] = await db.execute('SELECT * FROM articles INNER JOIN authors ON author_id = fk_author_id INNER JOIN categories ON category_id = fk_category_id WHERE fk_category_id = ?', [req.params.category_id]);
       db.end();
 
       res.render('categories-post',{
