@@ -9,7 +9,8 @@ module.exports = (app) => {
       let [categories] = await db.execute('SELECT * FROM categories');
       let [popularStories] = await db.execute ('SELECT * FROM `articles` INNER JOIN categories ON category_id = fk_category_id ORDER BY `articles`.`article_likes`  DESC LIMIT 4');
       let [popularStoriesInfo] = await db.execute ('SELECT * FROM `articles` INNER JOIN categories ON category_id = fk_category_id ORDER BY `articles`.`article_likes`  DESC LIMIT 4');
-      let [editorsPickPostAreas] = await db.execute ('SELECT * FROM `articles` ORDER BY `article_postdate` DESC LIMIT 6')
+      let [editorsPickPostAreas] = await db.execute ('SELECT * FROM `articles` ORDER BY `article_postdate` DESC LIMIT 6');
+      let [singleFeaturedPost] = await db.execute ('SELECT * FROM `articles` INNER JOIN categories ON category_id = fk_category_id ORDER BY `article_postdate` DESC LIMIT 6');
       db.end();
 
 
@@ -33,6 +34,7 @@ module.exports = (app) => {
          "popularStories": popularStories,
          "popularStoriesInfo": popularStoriesInfo,
          "editorsPickPostAreas": editorsPickPostAreas,
+         "singleFeaturedPost": singleFeaturedPost,
          "videos": videos,
          'dateTest':"2019-10-21 18:34",
          'dateTest2':"2019-9-15 09:57"
@@ -57,11 +59,17 @@ module.exports = (app) => {
       let db = await mysql.connect();
       let [categories] = await db.execute('SELECT * FROM categories');
       let [articles] = await db.execute('SELECT * FROM articles INNER JOIN authors ON author_id = fk_author_id INNER JOIN categories ON category_id = fk_category_id WHERE fk_category_id = ?', [req.params.category_id]);
+      let [singleFeaturedPost] = await db.execute ('SELECT * FROM `articles` INNER JOIN categories ON category_id = fk_category_id ORDER BY `article_postdate` DESC LIMIT 6');
+      let [popularStoriesInfo] = await db.execute ('SELECT * FROM `articles` INNER JOIN categories ON category_id = fk_category_id ORDER BY `articles`.`article_likes`  DESC LIMIT 4');
+      let [comments] = await db.execute ('SELECT * FROM `comments` INNER JOIN users ON user_id = fk_user_id ORDER BY `fk_article_id` ASC LIMIT 4');
       db.end();
 
       res.render('categories-post',{
          "categories": categories,
          "articles": articles,
+         "singleFeaturedPost" : singleFeaturedPost,
+         "popularStoriesInfo": popularStoriesInfo,
+         "comments" : comments,
          'dateTest':"2019-07-16 14:19",
          'dateTest2':"2019-06-10 13:42",
          'dateTest3':"2019-01-01 11:11",
