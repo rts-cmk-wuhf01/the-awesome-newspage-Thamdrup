@@ -78,6 +78,34 @@ module.exports = (app) => {
    });
 
 
+
+   app.get('/single-post/:article_id', async (req, res, next) => {
+
+      let db = await mysql.connect();
+      let [categories] = await db.execute('SELECT * FROM categories');
+      let [singleFeaturedPost] = await db.execute ('SELECT * FROM `articles` INNER JOIN categories ON category_id = fk_category_id ORDER BY `article_postdate` DESC LIMIT 6');
+      let [popularStoriesInfo] = await db.execute ('SELECT * FROM `articles` INNER JOIN categories ON category_id = fk_category_id ORDER BY `articles`.`article_likes`  DESC LIMIT 4');
+      let [comments] = await db.execute ('SELECT * FROM `comments` INNER JOIN users ON user_id = fk_user_id ORDER BY `fk_article_id` ASC LIMIT 4');
+      let [article] = await db.execute('SELECT * FROM articles INNER JOIN authors ON author_id = fk_author_id INNER JOIN categories ON category_id = fk_category_id WHERE article_id = ?', [req.params.article_id]);
+      // let [users] = 
+      db.end();
+      
+      res.render('single-post',{
+         "categories": categories,
+         "singleFeaturedPost" : singleFeaturedPost,
+         "popularStoriesInfo": popularStoriesInfo,
+         "comments" : comments,
+         "article" : article[0],
+         // "users" : users,
+         'dateTest':"2019-07-16 14:19",
+         'dateTest2':"2019-06-10 13:42",
+         'dateTest3':"2019-01-01 11:11",
+         'dateTest4':"1991-03-19 19:16",
+         'dateTest5':"2019-06-04 05:16"
+      })
+   });
+
+
    app.get('/contact', async (req, res, next) => {
 
       let db = await mysql.connect();
@@ -87,22 +115,6 @@ module.exports = (app) => {
       res.render('contact',{
          "categories": categories,
       });
-   });
-
-   app.get('/single-post', async (req, res, next) => {
-
-      let db = await mysql.connect();
-      let [categories] = await db.execute('SELECT * FROM categories');
-      db.end();
-      
-      res.render('single-post',{
-         "categories": categories,
-         'dateTest':"2019-07-16 14:19",
-         'dateTest2':"2019-06-10 13:42",
-         'dateTest3':"2019-01-01 11:11",
-         'dateTest4':"1991-03-19 19:16",
-         'dateTest5':"2019-06-04 05:16"
-      })
    });
 
    app.get('/about', async (req, res, next) => {
