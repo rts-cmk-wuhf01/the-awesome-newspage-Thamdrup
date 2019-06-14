@@ -11,6 +11,7 @@ module.exports = (app) => {
       let [popularStoriesInfo] = await db.execute ('SELECT * FROM `articles` INNER JOIN categories ON category_id = fk_category_id ORDER BY `articles`.`article_likes`  DESC LIMIT 4');
       let [editorsPickPostAreas] = await db.execute ('SELECT * FROM `articles` ORDER BY `article_postdate` DESC LIMIT 6');
       let [singleFeaturedPost] = await db.execute ('SELECT * FROM `articles` INNER JOIN categories ON category_id = fk_category_id ORDER BY `article_postdate` DESC LIMIT 6');
+      let [contact] = await db.execute ('SELECT * FROM `contact`');
       db.end();
 
 
@@ -36,6 +37,7 @@ module.exports = (app) => {
          "editorsPickPostAreas": editorsPickPostAreas,
          "singleFeaturedPost": singleFeaturedPost,
          "videos": videos,
+         "contact": contact,
          'dateTest':"2019-10-21 18:34",
          'dateTest2':"2019-9-15 09:57"
       })
@@ -87,7 +89,6 @@ module.exports = (app) => {
       let [popularStoriesInfo] = await db.execute ('SELECT * FROM `articles` INNER JOIN categories ON category_id = fk_category_id ORDER BY `articles`.`article_likes`  DESC LIMIT 4');
       let [comments] = await db.execute ('SELECT * FROM `comments` INNER JOIN users ON user_id = fk_user_id ORDER BY `fk_article_id` ASC LIMIT 4');
       let [article] = await db.execute('SELECT * FROM articles INNER JOIN authors ON author_id = fk_author_id INNER JOIN categories ON category_id = fk_category_id WHERE article_id = ?', [req.params.article_id]);
-      // let [users] = 
       db.end();
       
       res.render('single-post',{
@@ -96,7 +97,6 @@ module.exports = (app) => {
          "popularStoriesInfo": popularStoriesInfo,
          "comments" : comments,
          "article" : article[0],
-         // "users" : users,
          'dateTest':"2019-07-16 14:19",
          'dateTest2':"2019-06-10 13:42",
          'dateTest3':"2019-01-01 11:11",
