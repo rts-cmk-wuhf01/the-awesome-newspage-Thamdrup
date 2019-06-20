@@ -116,6 +116,34 @@ module.exports = (app) => {
          "categories": categories,
       });
    });
+   app.post('/contact', (req, res, next) => {
+      
+      let name = req.body.name;
+      let email = req.body.email;
+      let subject = req.body.subject;
+      let message = req.body.message;
+
+      let return_message = [];
+      if (name == undefined || name == '') {
+         return_message.push('Navn mangler');
+         return;
+      }
+      if (email == undefined || email == '') {
+         return_message.push('Email mangler');
+         return;
+      }
+      if (subject == undefined || subject == '') {
+         return_message.push('Emne mangler');
+         return;
+      }
+      if (message == undefined || message == '') {
+         return_message.push('Beskedteksten mangler');
+         return;
+      }
+
+      db.execute('INSERT INTO contact_messages SET name = ?, email = ?, subject = ?, message = ?', [value1, value2, value3]);
+      res.send(req.body);
+   });
 
    app.get('/about', async (req, res, next) => {
 
@@ -173,12 +201,44 @@ module.exports = (app) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+   app.get('/fisk/:amount/:type', async (req, res, next) => {
+   
+   let fiskData = {
+      amount: req.params.amount,
+      type : req.params.type
+   }
+   
+      res.render('fisk',{
+         "fiskData": fiskData
+      });
+   });
+
+
+
+
+
+
+
+
+
+
+
+
    app.get('/', async (req, res, next) => {
       let now = new Date('2019-01-14 07:00:14');
       console.log(app.locals.dateAndTime.format(now, 'h:mm A | MMMM DD'));
       res.render('');
    });
-
-
 
 };

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 13, 2019 at 11:13 AM
+-- Generation Time: Jun 20, 2019 at 01:10 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -81,7 +81,7 @@ CREATE TABLE `authors` (
 
 INSERT INTO `authors` (`author_id`, `author_image`, `author_name`, `author_title`, `author_description`) VALUES
 (1, 't1.jpg', 'Rick Mofina', 'Extreme Author', 'Rick Mofina is a former journalist who has interviewed murderers on death row, flown over L.A. with the LAPD and patrolled with the Royal Canadian Mounted Police near the Arctic. He’s also reported from the Caribbean, Africa and Kuwait’s border with Iraq. His books have been published in nearly 30 c'),
-(2, 't2.jpg', 'Glynnis Campbell', 'Children writer', 'GLYNNIS CAMPBELL is a USA Today bestselling author of swashbuckling action-adventure romance. She’s the wife of a rock star, and the mother of two young adults, but she’s also been a ballerina, a typographer, a film composer, a piano player, a singer in an all-girl rock band, and a voice in those vi'),
+(2, 't2.jpg', 'Glynnis Campbell', 'Children writer', 'Glynnis Campbell is a USA Today bestselling author of swashbuckling action-adventure romance. She’s the wife of a rock star, and the mother of two young adults, but she’s also been a ballerina, a typographer, a film composer, a piano player, a singer in an all-girl rock band, and a voice in those vi'),
 (3, 't4.jpg', 'John Scalzi', 'Science fiction writer', 'John Scalzi writes books, which, considering where you’re reading this, makes perfect sense. He’s best known for writing science fiction, including the New York Times bestseller Redshirts, which won the Hugo Award for Best Novel.'),
 (4, 't3.jpg', 'Courtney Milan', 'Bestselling author', 'Courtney Milan is a New York Times and USA Today bestselling author of historical romance. Her books have received starred reviews in Publishers Weekly and Booklist.'),
 (5, 't7.jpg', 'Laurelin Paige', 'Bestselling author', 'Laurelin Paige is the NY Times, Wall Street Journal, and USA Today Bestselling Author of the Fixed Trilogy. She’s a sucker for a good romance and gets giddy anytime there’s kissing, much to the embarrassment of her three daughters.'),
@@ -150,14 +150,35 @@ INSERT INTO `comments` (`comment_id`, `comment_postdate`, `comment_text`, `fk_us
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contact_info`
+-- Table structure for table `contact`
 --
 
-CREATE TABLE `contact_info` (
+CREATE TABLE `contact` (
   `contact_id` int(11) NOT NULL,
   `contact_mail` varchar(64) NOT NULL,
   `contact_phone` varchar(64) NOT NULL,
   `contact_adress` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`contact_id`, `contact_mail`, `contact_phone`, `contact_adress`) VALUES
+(1, 'contact@youremail.com', '+43 5278 2883 884', '805 305 - News Paper Street 1337');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact_messages`
+--
+
+CREATE TABLE `contact_messages` (
+  `contact_messages_id` int(11) NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `subject` varchar(128) NOT NULL,
+  `message` varchar(3000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -228,10 +249,16 @@ ALTER TABLE `comments`
   ADD PRIMARY KEY (`comment_id`);
 
 --
--- Indexes for table `contact_info`
+-- Indexes for table `contact`
 --
-ALTER TABLE `contact_info`
+ALTER TABLE `contact`
   ADD PRIMARY KEY (`contact_id`);
+
+--
+-- Indexes for table `contact_messages`
+--
+ALTER TABLE `contact_messages`
+  ADD PRIMARY KEY (`contact_messages_id`);
 
 --
 -- Indexes for table `users`
@@ -274,10 +301,16 @@ ALTER TABLE `comments`
   MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `contact_info`
+-- AUTO_INCREMENT for table `contact`
 --
-ALTER TABLE `contact_info`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `contact`
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `contact_messages`
+--
+ALTER TABLE `contact_messages`
+  MODIFY `contact_messages_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
