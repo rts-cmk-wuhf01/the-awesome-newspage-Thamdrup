@@ -4,7 +4,6 @@ const express = require('express');
 const app = express();
 
 
-
 /* aktiver serverside console.log af side indlæsninger. 
  * Dette sættes op så vi kan følge med i hvilke HTML filer 
  * og ROUTES der forsøges at blive indlæst */
@@ -34,6 +33,9 @@ app.locals.dateAndTime.setLocales('en', {
 /* indlæs alle de routes serveren skal håndtere
  * dette sker igennem en ny fil, for at splitte koden op i smartere blokke */
 require('./server/routes/routes.js')(app);
+/* indlæs admin-routes */
+require("./server/routes/admin-routes.js")(app);
+
 
 /* sæt serveren op så den kan servere html/css/javascript
  * og billeder direkte fra public mappen, efter alle routes er kørt */
