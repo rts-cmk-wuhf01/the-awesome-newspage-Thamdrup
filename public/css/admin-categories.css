@@ -1,0 +1,12 @@
+th, td, table{
+    border: 1px solid black;
+    padding: 1em;
+    background-color: dodgerblue;
+    margin: 0;
+}
+th{
+    background-color: lightblue;
+}
+td{
+    background-color: lightblue;
+}
